@@ -1,0 +1,37 @@
+version: "3"
+services:
+    postgres:
+        container_name: monprojet_postgres_container_27046
+        image: postgres:latest
+        working_dir: /app
+        restart: always
+        ports:
+            - "27046:5432"
+        environment:
+            POSTGRES_USER: monprojet
+            POSTGRES_PASSWORD: monprojet
+            POSTGRES_DB: monprojet
+        volumes:
+            - "postgres_monprojet_27046:/var/lib/postgresql/data/"
+
+    mysql:
+        container_name: monprojet_mysql_container_27047
+        image: mysql:latest
+        working_dir: /app
+        restart: always
+        command: 
+            - '--character-set-server=utf8mb4'
+            - '--collation-server=utf8mb4_unicode_ci'
+        ports:
+            - "27047:3306"
+        environment:
+            MYSQL_ROOT_PASSWORD: monprojet
+            MYSQL_USER: monprojet
+            MYSQL_PASSWORD: monprojet
+            MYSQL_DATABASE: monprojet
+        volumes:
+            - "mysql_monprojet_27047:/var/lib/mysql"
+
+volumes:
+    postgres_monprojet_27046:
+    mysql_monprojet_27047:
